@@ -11,7 +11,7 @@ services:
       MYSQL_USER:          ${DB_USERNAME:-tudoleve}
       MYSQL_PASSWORD:      ${DB_PASSWORD:-secret}
     ports:
-      - "3306:3306"
+      - "3307:3306"
     volumes:
       - db_data:/var/lib/mysql
     healthcheck:
@@ -99,10 +99,10 @@ services:
     environment:
       # Exposed to the browser — must be a URL the end-user's browser can reach.
       # Local: http://localhost/api/v1  |  Production: https://api.yourdomain.com/api/v1
-      NUXT_PUBLIC_API_BASE_URL: ${NUXT_PUBLIC_API_BASE_URL:-http://localhost/api/v1}
+      NUXT_PUBLIC_API_BASE: ${NUXT_PUBLIC_API_BASE:-http://localhost/api/v1}
       # Server-side only (SSR inside Docker). Uses the internal Docker network.
-      # Never reaches the browser; falls back to NUXT_PUBLIC_API_BASE_URL when unset.
-      NUXT_API_BASE_URL: ${NUXT_API_BASE_URL:-http://nginx/api/v1}
+      # Never reaches the browser; falls back to NUXT_PUBLIC_API_BASE when unset.
+      NUXT_API_BASE: ${NUXT_API_BASE:-http://nginx/api/v1}
     ports:
       - "3000:3000"
     depends_on:
